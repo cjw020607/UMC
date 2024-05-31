@@ -1,4 +1,4 @@
-import { BaseError } from "../../config/error.js";
+
 import { status } from "../../config/res_status.js";
 import { flagResponseDTO, tempResponseDTO } from "../dtos/temp_response_dto.js";
 
