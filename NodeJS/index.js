@@ -8,6 +8,7 @@ import { BaseError } from './config/error.js';
 import { response } from './config/response.js';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import { missionRouter } from './src/routes/mission.route.js';
 
 dotenv.config();   
 
@@ -42,7 +43,7 @@ app.use(express.urlencoded({extended: false})); // 단순 객체 문자열 형�
 
 //router setting
 app.use('/restaurants',expressAsyncHandler(restRouter));
-
+app.use('/mission',expressAsyncHandler(missionRouter));
 app.listen(port, () => {
 		console.log(`Example app listening on port ${port}`);
 });

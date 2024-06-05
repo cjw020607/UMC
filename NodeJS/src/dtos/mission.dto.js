@@ -5,3 +5,9 @@ export const addMissionResponseDTO=(data)=>{
         'reward':data[0].reward,
     }
 };
+
+export const addOnProgResponseDTO=(data)=>{
+    return{
+        'progress_status':data[0].progress_status
+    }
+}

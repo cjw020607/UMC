@@ -1,7 +1,7 @@
 import { BaseError } from "../../config/error.js";
 import { status } from "../../config/resp.status.js";
-import { addMissionResponseDTO } from "../dtos/mission.dto.js";
-import { addMis, getMis } from "../models/mission.dao.js";
+import { addMissionResponseDTO, addOnProgResponseDTO } from "../dtos/mission.dto.js";
+import { addMis, getMis, getUserMis, getUserMisWithId, setOnProg } from "../models/mission.dao.js";
 import { getRest } from "../models/rest.dao.js";
 
 
@@ -22,5 +22,20 @@ export const addMission=async(body)=>{
         throw new BaseError(status.BAD_REQUEST);
     }else{
         return addMissionResponseDTO(await getMis(addMisId));
+    }
+}
+
+export const addOnProgress=async(data)=>{
+    const userMission=await getUserMis(data);
+    if(userMission==-1||userMission[0].status=="진행중"){
+        throw new BaseError(status.BAD_REQUEST);
+    }
+    const setProgId=await setOnProg(userMission[0].id);
+    if(setProgId==-1){
+        throw new BaseError(status.BAD_REQUEST);
+    }
+    else{
+        console.log(await getUserMisWithId(setProgId));
+        return addOnProgResponseDTO(await getUserMisWithId(setProgId));
     }
 }
