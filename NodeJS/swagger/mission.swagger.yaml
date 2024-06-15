@@ -1,0 +1,93 @@
+paths:
+  /restaurants/mission:
+    post:
+      tags:
+        - Mission
+      summary: 미션 추가
+      parameters:
+      - name: addMission
+        in: body
+        required: true
+        schema:
+          properties:
+            restaurant_id:
+              type: bigint
+              description: 식당 id
+              example: 2
+            left_date:
+              type: bigint
+              description: 남은 날짜
+              example: 3
+            content:
+              type: string
+              description: 미션 내용
+              example: "100번 방문"
+            reward:
+              type: string
+              description: 보상
+              example: "10"
+            certification_num:
+              type: bigint
+              description: 인증 번호
+              example: 52382309
+
+      responses:
+        '200':
+          description: 리뷰 추가 성공!
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 2000
+              message:
+                type: string
+                example: "success!"
+              data:
+                type: object
+                example: 
+                  "restaurant_id": 1
+                  "rate": 5
+                  "content": "맛있어요"
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 400
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON001
+              message:
+                type: string
+                example: 잘못된 요청입니다
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 500
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON000
+              message:
+                type: string
+                example: 서버 에러, 관리자에게 문의 바랍니다.
