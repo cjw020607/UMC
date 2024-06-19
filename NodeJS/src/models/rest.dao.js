@@ -1,5 +1,4 @@
 import { pool } from "../../config/db.config.js";
-import { BaseError } from "../../config/error.js";
 import { status } from "../../config/resp.status.js";
 import { addRestaurant, getRegionId, getRestaurant } from "./rest.sql.js";
 
