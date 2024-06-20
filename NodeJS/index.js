@@ -9,17 +9,12 @@ import { response } from './config/response.js';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { missionRouter } from './src/routes/mission.route.js';
+import { userRouter } from './src/routes/user.route.js';
 
 dotenv.config();   
 
 const app = express();
 const port = 3000;
-
-
-// app.use((req, res, next) => {
-//     const err = new BaseError(status.NOT_FOUND);
-//     next(err);
-// });
 
 // server setting - veiw, static, body-parser etc..
 app.set('port', process.env.PORT || 3000)   // 서버 포트 지정
@@ -36,14 +31,21 @@ app.use((err, req, res, next) => {
     console.log("error", err);
     res.status(err.data.status || status.INTERNAL_SERVER_ERROR).send(response(err.data));
 });
+
 // swagger
 app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
-
-app.use(express.urlencoded({extended: false})); // 단순 객체 문자열 형태로 본문 데이터 해석
 
 //router setting
 app.use('/restaurants',expressAsyncHandler(restRouter));
 app.use('/mission',expressAsyncHandler(missionRouter));
+app.use('/users',userRouter);
+
+app.use((req, res, next) => {
+    const err = new BaseError(status.NOT_FOUND);
+    next(err);
+});
+
+
 app.listen(port, () => {
 		console.log(`Example app listening on port ${port}`);
 });
