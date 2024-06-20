@@ -9,7 +9,6 @@ import { response } from './config/response.js';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { missionRouter } from './src/routes/mission.route.js';
-import { storeRouter } from './src/routes/store.route.js';
 import { userRouter } from './src/routes/user.route.js';
 
 dotenv.config();   
@@ -39,7 +38,6 @@ app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
 //router setting
 app.use('/restaurants',expressAsyncHandler(restRouter));
 app.use('/mission',expressAsyncHandler(missionRouter));
-app.use('/:storId',expressAsyncHandler(storeRouter));
 app.use('/users',userRouter);
 
 app.use((req, res, next) => {
