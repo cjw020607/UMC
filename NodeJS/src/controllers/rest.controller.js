@@ -1,5 +1,6 @@
 import { status } from "../../config/resp.status.js";
 import { response } from "../../config/response.js";
+import { getMission } from "../providers/rest.provider.js";
 import { addMission } from "../services/mission.service.js";
 import { addRestaurant } from "../services/rest.service.js";
 import { addReview } from "../services/review.service.js";
@@ -20,4 +21,10 @@ export const missionAdd=async(req,res,next)=>{
     console.log("미션을 추가했습니다!");
     console.log("body:",req.body);
     res.send(response(status.SUCCESS,await addMission(req.body)));
+}
+
+export const missionGet=async(req,res,next)=>{
+    console.log("미션을 불러왔습니다!");
+    console.log("body:",req.body);
+    res.send(response(status.SUCCESS,await getMission(req.params.restId,req.query)));
 }
