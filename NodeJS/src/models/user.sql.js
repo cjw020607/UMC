@@ -21,3 +21,7 @@ export const getMissionOPByUserId=
 +"FROM member_mission mm JOIN mission m on mm.mission_id=m.id "
 +"WHERE mm.member_id=? AND mm.progress_status=? AND mm.id<? "
 +"ORDER BY mm.id DESC LIMIT ?;";
+
+export const getUserOPMission="SELECT mm.id FROM member_mission mm WHERE mm.member_id=? AND mm.progress_status='진행중'";
+export const setProgClear="UPDATE member_mission SET progress_status='완료' WHERE id = ?";
+export const getUserClearMission="SELECT * FROM member_mission mm JOIN mission m ON mm.mission_id=m.id WHERE mm.member_id=? AND mm.progress_status='완료'";

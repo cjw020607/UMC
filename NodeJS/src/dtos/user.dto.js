@@ -30,3 +30,18 @@ export const userPreviewMissionOPResponseDTO=(data)=>{
     return {"missionData": missions,"cursorId":data[data.length-1].mission_id};
 }
 
+export const updateProgClearResponseDTO=(data)=>{
+    const missions=[];
+    for(let i=0;i<data.length;i++){
+        missions.push({
+            "restaurant_id":data[i].restaurant_id,
+            "left_date":data[i].left_date,
+            "content": data[i].content,
+            "reward":data[i].reward,
+            "certification_num":data[i].certification_num,
+            "progress_status":data[i].progress_status
+        })
+    }
+    console.log(missions);
+    return {"missionData": missions,"cursorId":data[data.length-1].mission_id};
+}
