@@ -66,7 +66,7 @@ export const setOnProg=async(userMisId)=>{
             return -1;
         }
         conn.release();
-        return userMisId;
+        return;
     }catch(err){
         console.log(err);
         throw new BaseError(status.INTERNAL_SERVER_ERROR);
